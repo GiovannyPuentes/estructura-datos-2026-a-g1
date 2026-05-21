@@ -1,58 +1,60 @@
-# Semana 13 – Entregable: Aplicación Práctica de Estructuras de Datos
+# Estudiante: Giovanny Andrey Puentes Alape
 
-## Contexto
+# Semana 13 – Actividad: Aplicación de Estructuras de Datos
 
-Este documento presenta el diseño de un sistema sencillo que combina múltiples estructuras de datos para resolver un problema real de gestión de información.
+## Introducción
 
----
-
-## Sistema diseñado: Gestor de Biblioteca
-
-Un sistema que permite registrar libros, llevar el historial de préstamos, gestionar la fila de reservas y organizar los géneros literarios de forma jerárquica.
+En este documento se presenta el diseño de un sistema básico que integra diferentes estructuras de datos para solucionar un caso práctico relacionado con la administración de información dentro de una biblioteca.
 
 ---
 
-## Tipos de datos que maneja el sistema
+## Sistema propuesto: Administrador de Biblioteca
 
-| # | Tipo de dato          | Descripción                                              |
-|---|-----------------------|----------------------------------------------------------|
-| 1 | Libros                | Colección principal de libros registrados en la biblioteca |
-| 2 | Historial de préstamos | Registro de las últimas acciones realizadas (préstamos/devoluciones) |
-| 3 | Cola de reservas      | Usuarios que esperan turno para un libro disponible      |
-| 4 | Categorías de géneros | Organización jerárquica de géneros y subgéneros literarios |
+El sistema permite almacenar libros, controlar préstamos, gestionar reservas de usuarios y organizar los géneros literarios mediante una estructura jerárquica.
 
 ---
 
-## Asignación de estructuras de datos
+## Datos manejados por el sistema
 
-| Tipo de dato           | Estructura        | Justificación                                                                 |
-|------------------------|-------------------|-------------------------------------------------------------------------------|
-| Libros                 | Lista enlazada    | Permite agregar y eliminar libros dinámicamente sin tamaño fijo.              |
-| Historial de préstamos | Pila              | La última acción registrada es la primera en consultarse o deshacerse.        |
-| Cola de reservas       | Cola              | Se respeta el orden de llegada: el primero en reservar es el primero atendido.|
-| Categorías de géneros  | Árbol binario     | Representa relaciones jerárquicas entre géneros y subgéneros.                 |
+| # | Tipo de dato            | Descripción                                                        |
+|---|--------------------------|--------------------------------------------------------------------|
+| 1 | Libros                   | Conjunto de libros registrados en la biblioteca                    |
+| 2 | Registro de préstamos    | Historial de préstamos y devoluciones realizadas                   |
+| 3 | Reservas de usuarios     | Usuarios en espera para acceder a un libro disponible              |
+| 4 | Géneros literarios       | Clasificación jerárquica de géneros y subgéneros                   |
 
 ---
 
-## Justificación de cada estructura
+## Estructuras de datos utilizadas
 
-### Lista enlazada → Libros
-El catálogo de libros crece y cambia constantemente: se agregan nuevos títulos y se retiran otros. La lista enlazada permite estas operaciones de forma dinámica sin necesidad de definir un tamaño fijo desde el inicio, a diferencia de un arreglo estático.
+| Tipo de dato            | Estructura utilizada | Motivo de uso                                                              |
+|-------------------------|----------------------|------------------------------------------------------------------------------|
+| Libros                  | Lista enlazada       | Facilita agregar y eliminar elementos dinámicamente.                        |
+| Registro de préstamos   | Pila                 | Permite acceder primero a la acción más reciente.                           |
+| Reservas de usuarios    | Cola                 | Mantiene el orden de llegada de los usuarios.                               |
+| Géneros literarios      | Árbol binario        | Organiza categorías de manera jerárquica y estructurada.                    |
+
+---
+
+## Explicación de cada estructura
+
+### Lista enlazada → Catálogo de libros
+El catálogo puede modificarse constantemente, ya que algunos libros se agregan y otros se eliminan. La lista enlazada resulta adecuada porque permite realizar cambios dinámicos sin depender de un tamaño fijo.
 
 ### Pila → Historial de préstamos
-Cuando un usuario quiere consultar o deshacer la última acción (por ejemplo, cancelar un préstamo recién registrado), lo más lógico es acceder al evento más reciente primero. La pila sigue el principio **LIFO** (Last In, First Out), ideal para este comportamiento.
+El historial de acciones debe consultar primero la última operación realizada. La pila trabaja bajo el principio **LIFO** (Last In, First Out), lo que permite recuperar rápidamente el último préstamo o devolución registrada.
 
-### Cola → Cola de reservas
-Si varios usuarios reservan el mismo libro, deben ser atendidos en el orden en que llegaron. La cola sigue el principio **FIFO** (First In, First Out), lo que garantiza equidad y orden en el procesamiento de turnos.
+### Cola → Reservas de usuarios
+Cuando varios usuarios solicitan el mismo libro, el sistema debe respetar el orden en el que llegaron las solicitudes. La cola funciona mediante el principio **FIFO** (First In, First Out), asegurando un proceso justo.
 
-### Árbol binario → Categorías de géneros
-Los géneros literarios tienen una estructura jerárquica natural: un género principal puede dividirse en subgéneros, y estos en categorías más específicas. El árbol binario representa estas relaciones padre–hijo de forma clara y permite recorrerlas eficientemente.
+### Árbol binario → Clasificación de géneros
+Los géneros literarios poseen una organización jerárquica natural. Un género principal puede contener subgéneros más específicos. El árbol binario permite representar estas relaciones de manera clara y eficiente.
 
 ---
 
-## Diagrama del árbol binario de géneros
+## Representación del árbol binario de géneros
 
-```
+```text
               Literatura           ← Nivel 0 (Raíz)
              /          \
          Ficción       No Ficción  ← Nivel 1 (Nodos internos)
@@ -63,78 +65,81 @@ Los géneros literarios tienen una estructura jerárquica natural: un género pr
 
 ---
 
-## Idea conceptual en Java
+## Ejemplo conceptual en Java
 
 ```java
 // Lista enlazada: catálogo de libros
 List<String> libros = new LinkedList<>();
 libros.add("El Principito");
-libros.add("Cien años de soledad");
+libros.add("Don Quijote de la Mancha");
 
-// Pila: historial de préstamos
+// Pila: historial de movimientos
 Stack<String> historial = new Stack<>();
 historial.push("Préstamo: El Principito - Usuario: Ana");
-historial.push("Devolución: Cien años de soledad - Usuario: Luis");
+historial.push("Devolución: Don Quijote - Usuario: Luis");
 
 // Cola: reservas pendientes
 Queue<String> reservas = new LinkedList<>();
 reservas.add("Usuario: Carlos - Libro: El Principito");
 reservas.add("Usuario: María - Libro: El Principito");
 
-// Árbol binario: categorías de géneros (estructura conceptual)
+// Árbol binario: categorías de géneros
 // Nodo raíz: Literatura
 // Hijo izquierdo: Ficción | Hijo derecho: No Ficción
 ```
 
 ---
 
-## Interacción entre las estructuras
+## Relación entre las estructuras
 
-```
+```text
   [Lista enlazada]         [Cola de reservas]
    Catálogo de libros  →   Usuarios en espera
          |                        |
          ↓                        ↓
   Cuando un libro         Cuando el libro
-  está disponible         se libera, el
+  está disponible         queda libre, el
                           primero en cola
-                          es atendido
+                          recibe atención
          |
          ↓
   [Pila - Historial]
   Cada préstamo o
-  devolución se registra
-  → se puede deshacer
-  la última acción
+  devolución queda
+  registrado y puede
+  revertirse la última
+  operación realizada
          |
          ↓
   [Árbol binario]
-  El libro registrado
-  se clasifica dentro
-  de su género en la
-  jerarquía de categorías
+  El libro se organiza
+  según su género dentro
+  de la jerarquía de
+  categorías literarias
 ```
 
-### Flujo de una operación completa
+---
 
-1. Un nuevo libro se agrega a la **lista enlazada** (catálogo).
-2. Se clasifica dentro del **árbol binario** según su género literario.
-3. Un usuario solicita el libro → entra a la **cola de reservas**.
-4. Cuando el libro está disponible, se presta al primero de la cola.
-5. El préstamo se registra en la **pila** del historial.
-6. Si hay un error, se consulta la pila para deshacer la última acción.
+## Flujo general de funcionamiento
+
+1. Se agrega un nuevo libro a la **lista enlazada**.
+2. El libro se clasifica dentro del **árbol binario** según su género.
+3. Un usuario solicita el libro y entra a la **cola de reservas**.
+4. Cuando el libro queda disponible, el primer usuario de la cola es atendido.
+5. La operación se almacena en la **pila** del historial.
+6. Si ocurre un error, se consulta la pila para revertir la última acción.
 
 ---
 
-## Comparación de estructuras usadas
+## Comparación de las estructuras implementadas
 
-| Estructura     | Principio     | Operación principal       | Uso en el sistema              |
-|----------------|---------------|---------------------------|--------------------------------|
-| Lista enlazada | Dinámica      | Agregar / eliminar        | Catálogo de libros             |
-| Pila           | LIFO          | Push / Pop                | Historial de préstamos         |
-| Cola           | FIFO          | Enqueue / Dequeue         | Reservas de usuarios           |
-| Árbol binario  | Jerárquico    | Insertar / recorrer       | Clasificación de géneros       |
+| Estructura      | Principio      | Operación principal      | Función dentro del sistema         |
+|-----------------|----------------|---------------------------|------------------------------------|
+| Lista enlazada  | Dinámica       | Insertar / eliminar       | Gestión de libros                  |
+| Pila            | LIFO           | Push / Pop                | Historial de préstamos             |
+| Cola            | FIFO           | Enqueue / Dequeue         | Reservas de usuarios               |
+| Árbol binario   | Jerárquico     | Insertar / recorrer       | Organización de géneros            |
 
 ---
 
-*Documento elaborado como entregable opcional de la Semana 13 – Aplicación Práctica de Estructuras de Datos.*
+*Documento desarrollado como actividad de la Semana 13 – Aplicación de Estructuras de Datos.*
