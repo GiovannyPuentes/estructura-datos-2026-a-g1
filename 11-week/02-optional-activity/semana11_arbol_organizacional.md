@@ -1,88 +1,91 @@
-# Semana 11 – Entregable: Árbol de Estructura Organizacional
+# Estudiante: Giovanny Andrey Puentes Alape
 
-## Contexto
+# Semana 11 – Actividad: Árbol de Organización Empresarial
 
-Este documento presenta el diseño de un árbol que representa la estructura organizacional de una empresa, aplicando los conceptos de la Semana 11: nodos, raíz, hojas, altura y relaciones padre–hijo.
+## Introducción
+
+En este documento se presenta la representación de una estructura organizacional mediante un árbol, aplicando los conceptos fundamentales estudiados en la Semana 11, tales como raíz, nodos internos, hojas, niveles y relaciones entre padre e hijo.
 
 ---
 
-## Diagrama del árbol
+## Representación del árbol
 
+```text
+               Gerente General           ← Nivel 0 (Raíz)
+               /              \
+      Área Administrativa   Área Operativa   ← Nivel 1 (Nodos internos)
+          /        \           /        \
+    Trabajador 1 Trabajador 2 Trabajador 3 Trabajador 4  ← Nivel 2 (Hojas)
 ```
-              Gerente General          ← Nivel 0 (Raíz)
-              /             \
-     Departamento A     Departamento B  ← Nivel 1 (Nodos internos)
-       /       \             /       \
-  Empleado 1  Empleado 2  Empleado 3  Empleado 4  ← Nivel 2 (Hojas)
-```
 
 ---
 
-## Identificación de elementos
+## Componentes del árbol
 
-| Elemento        | Nodo(s)                                                     |
-|-----------------|-------------------------------------------------------------|
-| **Raíz**        | Gerente General                                             |
-| **Nodos internos** | Departamento A, Departamento B                           |
-| **Hojas**       | Empleado 1, Empleado 2, Empleado 3, Empleado 4              |
-| **Altura**      | 2 (hay 3 niveles: 0, 1 y 2)                                 |
+| Elemento             | Nodo(s)                                                        |
+|----------------------|----------------------------------------------------------------|
+| **Nodo raíz**        | Gerente General                                                |
+| **Nodos internos**   | Área Administrativa, Área Operativa                            |
+| **Nodos hoja**       | Trabajador 1, Trabajador 2, Trabajador 3, Trabajador 4         |
+| **Altura del árbol** | 2 (correspondiente a los niveles 0, 1 y 2)                     |
 
 ---
 
-## Explicación de los elementos
+## Descripción de los elementos
 
-### Raíz
-El **Gerente General** es el nodo principal del árbol. No tiene padre; todos los demás nodos dependen jerárquicamente de él. Representa la autoridad máxima de la empresa.
+### Nodo raíz
+El **Gerente General** corresponde al nodo principal del árbol. Este nodo no depende de ningún otro y representa el nivel de autoridad más alto dentro de la organización empresarial.
 
 ### Nodos internos
-El **Departamento A** y el **Departamento B** son nodos que tienen padre (el Gerente General) y también tienen hijos (los empleados). Están en el nivel 1 del árbol y representan las áreas funcionales de la organización.
+Las áreas **Administrativa** y **Operativa** son consideradas nodos internos, debido a que poseen un nodo padre y también nodos hijos. Ambos dependen del Gerente General y supervisan a los trabajadores de cada área.
 
-### Hojas
-Los **Empleados 1, 2, 3 y 4** son nodos hoja: tienen padre (su departamento respectivo), pero **no tienen hijos**. Se ubican en el nivel 2 y representan a las personas que no gestionan a otros dentro de esta estructura.
+### Nodos hoja
+Los **Trabajadores 1, 2, 3 y 4** representan los nodos hoja, ya que no poseen descendientes dentro de la estructura. Cada trabajador depende directamente de su respectiva área.
 
 ### Altura del árbol
-La altura es **2**, ya que el camino más largo desde la raíz hasta una hoja pasa por 2 aristas:
+La altura del árbol es igual a **2**, porque el recorrido más largo desde la raíz hasta una hoja contiene dos conexiones o aristas.
 
+```text
+Gerente General → Área Administrativa → Trabajador 1
 ```
-Gerente General → Departamento A → Empleado 1
-```
 
-Esto equivale a 3 niveles (0, 1 y 2), pero la altura se mide en número de aristas (o saltos), que en este caso es 2.
+Aunque la estructura cuenta con tres niveles en total (0, 1 y 2), la altura se calcula únicamente mediante la cantidad de enlaces entre nodos.
 
 ---
 
-## Relaciones padre–hijo
+## Relaciones padre e hijo
 
-| Padre             | Hijos                          |
-|-------------------|--------------------------------|
-| Gerente General   | Departamento A, Departamento B |
-| Departamento A    | Empleado 1, Empleado 2         |
-| Departamento B    | Empleado 3, Empleado 4         |
-| Empleado 1        | _(ninguno — es hoja)_          |
-| Empleado 2        | _(ninguno — es hoja)_          |
-| Empleado 3        | _(ninguno — es hoja)_          |
-| Empleado 4        | _(ninguno — es hoja)_          |
-
----
-
-## ¿Por qué esta estructura es un árbol?
-
-- Los datos tienen una **jerarquía clara**: hay un líder que supervisa departamentos, y estos supervisan empleados.
-- Cada nodo tiene **exactamente un padre** (excepto la raíz).
-- No existen ciclos ni conexiones cruzadas entre nodos del mismo nivel.
-- La organización es **vertical y ramificada**, lo opuesto a una estructura lineal como una lista o una fila.
+| Nodo padre           | Nodos hijos                                   |
+|----------------------|-----------------------------------------------|
+| Gerente General      | Área Administrativa, Área Operativa           |
+| Área Administrativa  | Trabajador 1, Trabajador 2                    |
+| Área Operativa       | Trabajador 3, Trabajador 4                    |
+| Trabajador 1         | _(sin hijos — nodo hoja)_                     |
+| Trabajador 2         | _(sin hijos — nodo hoja)_                     |
+| Trabajador 3         | _(sin hijos — nodo hoja)_                     |
+| Trabajador 4         | _(sin hijos — nodo hoja)_                     |
 
 ---
 
-## Comparación: árbol vs estructura lineal
+## ¿Por qué esta estructura corresponde a un árbol?
 
-| Aspecto               | Lista (lineal)                  | Árbol (este ejemplo)                  |
-|-----------------------|---------------------------------|---------------------------------------|
-| Forma                 | Secuencia                       | Jerarquía                             |
-| Relación entre nodos  | Uno después del otro            | Padre – hijos                         |
-| Ejemplo               | Lista de empleados              | Organigrama de la empresa             |
-| Navegación            | Solo hacia adelante/atrás       | Por niveles y ramas                   |
+- Presenta una jerarquía claramente organizada.
+- Cada nodo tiene un único padre, excepto la raíz.
+- No existen ciclos ni conexiones repetidas.
+- La estructura se divide en diferentes ramas y niveles.
+- Representa adecuadamente las relaciones de dependencia dentro de la empresa.
 
 ---
 
-*Documento elaborado como entregable opcional de la Semana 11 – Introducción a Árboles.*
+## Comparación entre una estructura lineal y un árbol
+
+| Característica            | Estructura lineal              | Árbol organizacional                     |
+|---------------------------|--------------------------------|------------------------------------------|
+| Organización              | Secuencial                     | Jerárquica                               |
+| Relación entre elementos  | Uno después del otro           | Relaciones padre e hijo                  |
+| Ejemplo                   | Lista de empleados             | Organigrama empresarial                  |
+| Forma de recorrido        | Adelante y atrás               | Por niveles y ramas                      |
+
+---
+
+*Documento desarrollado como actividad de la Semana 11 – Conceptos básicos de árboles.*
