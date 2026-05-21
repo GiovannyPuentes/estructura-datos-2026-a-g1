@@ -1,14 +1,16 @@
-# Semana 12 – Entregable: Árbol Binario Simple
+# Estudiante: Giovanny Andrey Puentes Alape
 
-## Contexto
+# Semana 12 – Actividad: Árbol Binario Básico
 
-Este documento presenta el diseño de un árbol binario con las letras **M, F, T, A, H, R, Z**, respetando la regla principal: cada nodo puede tener **máximo dos hijos** (izquierdo y derecho).
+## Introducción
+
+En este documento se desarrolla la representación de un árbol binario utilizando las letras **M, F, T, A, H, R y Z**, aplicando la regla fundamental de este tipo de estructura: cada nodo puede tener como máximo dos hijos, uno izquierdo y otro derecho.
 
 ---
 
-## Diagrama del árbol
+## Representación gráfica del árbol
 
-```
+```text
               M                  ← Nivel 0 (Raíz)
             /   \
            F     T               ← Nivel 1 (Nodos internos)
@@ -18,45 +20,49 @@ Este documento presenta el diseño de un árbol binario con las letras **M, F, T
 
 ---
 
-## Identificación de elementos
+## Identificación de los componentes
 
 | Elemento            | Nodo(s)                              |
 |---------------------|--------------------------------------|
-| **Raíz**            | M                                    |
+| **Nodo raíz**       | M                                    |
 | **Nodos internos**  | F, T                                 |
-| **Hojas**           | A, H, R, Z                           |
-| **Altura**          | 2 (3 niveles: 0, 1 y 2)              |
+| **Nodos hoja**      | A, H, R, Z                           |
+| **Altura**          | 2 (niveles 0, 1 y 2)                 |
 
 ---
 
 ## Explicación de los elementos
 
-### Raíz
-**M** es el nodo principal del árbol. No tiene padre y todos los demás nodos se organizan jerárquicamente a partir de él.
+### Nodo raíz
+El nodo **M** corresponde a la raíz del árbol, ya que es el punto principal desde donde se desprenden todos los demás nodos. Este nodo no posee padre y representa el inicio de la estructura jerárquica.
 
 ### Nodos internos
-**F** y **T** son nodos que tienen padre (M) y también tienen hijos. Cada uno ocupa el nivel 1 y respeta la regla binaria: tienen exactamente dos hijos.
+Los nodos **F** y **T** son considerados nodos internos porque tienen un nodo padre y también poseen nodos hijos. Ambos se encuentran ubicados en el nivel 1 del árbol binario.
 
 - F → hijo izquierdo: A | hijo derecho: H
 - T → hijo izquierdo: R | hijo derecho: Z
 
-### Hojas
-**A, H, R y Z** son nodos hoja: tienen padre pero **no tienen hijos**. Se ubican en el nivel 2 y cumplen la condición de que sus referencias izquierda y derecha son `null`.
+Cada uno cumple correctamente la propiedad de un árbol binario, teniendo únicamente dos hijos como máximo.
+
+### Nodos hoja
+Los nodos **A, H, R y Z** son hojas porque no poseen descendientes. Todos ellos se encuentran en el nivel 2 y sus referencias izquierda y derecha contienen el valor `null`.
 
 ### Altura del árbol
-La altura es **2**, ya que el camino más largo desde la raíz hasta una hoja pasa por 2 aristas:
+La altura del árbol es igual a **2**, debido a que el recorrido más largo desde la raíz hasta una hoja contiene dos aristas.
 
-```
+```text
 M → F → A
 ```
 
+Esto significa que, aunque el árbol posee tres niveles, la altura se calcula mediante la cantidad de conexiones entre nodos.
+
 ---
 
-## Estructura interna de cada nodo
+## Estructura interna de un nodo
 
-Cada nodo del árbol almacena internamente tres elementos:
+Cada nodo dentro del árbol binario almacena tres elementos principales:
 
-```
+```text
 Nodo:
     dato
     izquierdo
@@ -75,7 +81,7 @@ Nodo:
 
 ---
 
-## Relaciones padre–hijo
+## Relaciones entre padres e hijos
 
 | Padre | Hijo izquierdo | Hijo derecho |
 |-------|----------------|--------------|
@@ -89,25 +95,25 @@ Nodo:
 
 ---
 
-## ¿Por qué esta estructura es un árbol binario?
+## ¿Por qué esta estructura corresponde a un árbol binario?
 
-- Cada nodo tiene **máximo dos hijos**: uno izquierdo y uno derecho.
-- Existe una **única raíz** (M) sin padre.
-- No hay ciclos ni conexiones cruzadas entre nodos.
-- Las hojas tienen sus referencias `izquierdo` y `derecho` en `null`.
-- La estructura es **jerárquica y limitada**, a diferencia de un árbol general donde un nodo puede tener ilimitados hijos.
-
----
-
-## Comparación: árbol general vs árbol binario
-
-| Aspecto               | Árbol general                   | Árbol binario (este ejemplo)          |
-|-----------------------|---------------------------------|---------------------------------------|
-| Número de hijos       | Ilimitado                       | Máximo 2                              |
-| Organización          | Jerárquica                      | Jerárquica y limitada                 |
-| Ejemplo               | Organigrama de empresa          | Árbol con letras M, F, T, A, H, R, Z |
-| Uso común             | Estructuras organizacionales    | Búsquedas y recorridos                |
+- Cada nodo tiene un máximo de dos hijos.
+- Existe una única raíz llamada **M**.
+- No hay ciclos ni conexiones repetidas entre nodos.
+- Las hojas tienen referencias vacías (`null`) en sus hijos izquierdo y derecho.
+- La estructura mantiene una organización jerárquica y ordenada.
 
 ---
 
-*Documento elaborado como entregable opcional de la Semana 12 – Árbol Binario Simple.*
+## Comparación entre un árbol general y un árbol binario
+
+| Característica         | Árbol general                   | Árbol binario                        |
+|------------------------|---------------------------------|--------------------------------------|
+| Número de hijos        | Puede ser ilimitado             | Máximo dos hijos                     |
+| Tipo de organización   | Jerárquica                      | Jerárquica y limitada                |
+| Ejemplo                | Organigrama empresarial         | Árbol con letras M, F, T, A, H, R, Z |
+| Uso frecuente          | Estructuras organizacionales    | Búsquedas y recorridos               |
+
+---
+
+*Documento desarrollado como actividad de la Semana 12 – Árbol Binario Básico.*
